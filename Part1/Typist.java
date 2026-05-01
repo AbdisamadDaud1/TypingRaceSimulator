@@ -1,4 +1,4 @@
-/**
+/*
  * Write a description of class Typist here.
  *
  * Starter code generously abandoned by Ty Posaurus, your predecessor,
@@ -12,19 +12,20 @@
 public class Typist
 {
     // Fields of class Typist
+    String typistName;
+    char typistSymbol;
+    int progress;
+    Boolean burn;
+    int remburn;
+    double typistAccuracy;
+    boolean mistyped;
+
+
     // Hint: you will need six fields. Think carefully about their types.
     // One of them tracks how far along the passage the typist has reached.
     // Another tracks whether the typist is currently burnt out.
     // A third tracks HOW MANY turns of burnout remain (not just whether they are burnt out).
     // The remaining three should be fairly obvious.
-
-        private String typistName;
-        private char typistSymbol;
-        private int progress;
-        private boolean burn;
-        private int remburn;
-        private double typistAccuracy;
-        private boolean mistyped;
 
 
 
@@ -56,6 +57,13 @@ public class Typist
      */
     public void burnOut(int turns)
     {
+        remburn = turns;
+        burn = true;
+    }
+
+    public void mistype()
+    {
+        mistyped = true;
         if (burn == false) { //prevents burnout from stacking
             remburn = turns;
             burn = true;
@@ -200,22 +208,5 @@ public class Typist
     {
         typistSymbol = newSymbol;
     }
-
-    public boolean isMistyped() {
-        if (mistyped == true) {
-            return true;
-        }
-        return false;
-    }
-
-    public void removeMistype() {
-        mistyped = false;
-    }
-
-    public void setMistype() {
-        mistyped = true;
-    }
-
-    
 
 }
