@@ -64,6 +64,10 @@ public class Typist
     public void mistype()
     {
         mistyped = true;
+        if (burn == false) { //prevents burnout from stacking
+            remburn = turns;
+            burn = true;
+        }
     }
 
     /**
@@ -73,15 +77,11 @@ public class Typist
      */
     public void recoverFromBurnout()
     {
-        remburn--;
         if (remburn == 0) {
             burn = false;
         }
-    }
+        remburn--;
 
-    public void removeMistype() 
-    {
-        mistyped = false;
     }
 
     /**
@@ -161,13 +161,6 @@ public class Typist
         return false; // placeholder - replace with correct implementation
     }
 
-    public boolean isMistyped() {
-        if (mistyped == true) {
-            return true;
-        }
-        return false;
-    }
-
     /**
      * Advances the typist forward by one character along the passage.
      * Should only be called when the typist is not burnt out.
@@ -199,7 +192,7 @@ public class Typist
      * @param newAccuracy the new accuracy rating
      */
     public void setAccuracy(double newAccuracy)
-    {   
+    {
         if (newAccuracy >= 0 & newAccuracy <= 1) {
             typistAccuracy = newAccuracy;
         }
@@ -210,6 +203,7 @@ public class Typist
      *
      * @param newSymbol the new symbol character
      */
+
     public void setSymbol(char newSymbol)
     {
         typistSymbol = newSymbol;
